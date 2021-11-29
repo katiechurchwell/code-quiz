@@ -10,7 +10,7 @@ startBtn.addEventListener("click", StartQuiz)
 
 // THEN a timer starts and I am presented with a question
 var counter = 10
-    
+
 var countdown = function(){
 console.log(counter);
 counter--;
@@ -20,7 +20,7 @@ counter--;
    };
 };
 
-// var startCountdown = setInterval(countdown, 1000); //milliseconds
+var startCountdown = setInterval(countdown, 1000); //milliseconds
 
 // WHEN I answer a question
 
