@@ -2,7 +2,8 @@
 var startBtn = document.getElementById("startBtn");
 
 var StartQuiz = function () {
-  console.log("hey");
+  presentQuestion();
+  countdown();
 };
 
 startBtn.addEventListener("click", StartQuiz);
@@ -24,6 +25,8 @@ var startCountdown = setInterval(countdown, 1000); //milliseconds
 const question1 = {
   q: "Question",
   a: "Answer",
+  wrong1: "wrong #1",
+  wrong2: "wrong #2",
 };
 
 // WHEN I answer a question
@@ -34,19 +37,35 @@ var presentQuestion = function () {
   startBtn.remove();
 
   //create div
+  var megaContainer = document.createElement("div");
+  megaContainer.setAttribute("class", "megaContainer");
+  document.body.appendChild(megaContainer);
+
+  //display question
   var questionContainer = document.createElement("div");
   questionContainer.setAttribute("class", "question");
-  document.body.appendChild(questionContainer);
-  //display question
+  megaContainer.appendChild(questionContainer);
+
   questionContainer.innerHTML = question1.q;
-//create buttons for multiple choice
-var answerContainer = document.createElement("button");
-answerContainer.setAttribute("class", "answer");
-document.body.appendChild(answerContainer);
-answerContainer.innerHTML = question1.a;
-//if else code for correct button
+
+  //create buttons for multiple choice
+  var answerContainer = document.createElement("button");
+  answerContainer.setAttribute("class", "answer");
+  megaContainer.appendChild(answerContainer);
+  answerContainer.innerHTML = question1.a;
+  
+  var answerContainer = document.createElement("button");
+  answerContainer.setAttribute("class", "answer");
+  megaContainer.appendChild(answerContainer);
+  answerContainer.innerHTML = question1.wrong1;
+
+  var answerContainer = document.createElement("button");
+  answerContainer.setAttribute("class", "answer");
+  megaContainer.appendChild(answerContainer);
+  answerContainer.innerHTML = question1.wrong2;
+  
+  //if else code for correct button
 };
-presentQuestion();
 
 // THEN I am presented with another question
 

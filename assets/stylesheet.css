@@ -5,7 +5,7 @@
 }
 
 body {
-    text-align: center;
+  text-align: center;
 }
 
 #start-button-container {
@@ -36,16 +36,24 @@ header {
   justify-content: space-between;
 }
 
-.question {
-  display: flex;
-  justify-content: center;
-  width: 100vw;
-  font-size: large;
-  align-items: center;
-}
-
-.answer {
+button {
   width: 50vw;
   font-size: large;
   height: auto;
+  background-color: lightslategrey;
+  border: none;
+  border-radius: 12px;
+}
+
+button:hover {
+  background-color: orange;
+}
+
+.megaContainer {
+    display: flex;
+    width: 100vw;
+    font-size: large;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
 }
