@@ -24,7 +24,7 @@ var startCountdown = setInterval(countdown, 1000); //milliseconds
 //Questions
 const question1 = {
   question: "Question",
-  options: ["no1", "no2", "no3", "Correct"]
+  options: ["no1", "no2", "no3", "Correct"],
 };
 
 // WHEN I answer a question
@@ -46,22 +46,22 @@ var presentQuestion = function () {
   questionContainer.innerHTML = question1.question;
 
   //loop through options to create buttons
-  for (var i=0; i < question1.options.length; i++) {
+  for (var i = 0; i < question1.options.length; i++) {
     var button = document.createElement("button");
     megaContainer.appendChild(button);
-    button.setAttribute("id", question1.options.selectedIndex = [i]);
+    button.setAttribute("id", (question1.options.selectedIndex = [i]));
     button.innerHTML = question1.options[i];
-    ;
   }
 
- //determine selection 
-  var correct = document.querySelectorAll("button['question1.options[5]']")
-  console.log(correct);
-    // target.onclick = alert("you did it! yay~")
-  };
+//determine selection
+var test = function () {
+    console.log("Correct!");
+}
 
- 
-  
+var correct = document.getElementById("3");
+correct.addEventListener("click", test);
+
+};
 
 // THEN I am presented with another question
 
