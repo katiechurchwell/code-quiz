@@ -12,13 +12,17 @@ startBtn.addEventListener("click", StartQuiz);
 // need to save highscore, and end round.
 
 function setTimer(time) {
-    //start the interval
-    var counter = setInterval(function () {
-        document.getElementById('timer-container').innerHTML = "Timer: " + time; //write to div
-        time-- || clearInterval(counter); //clear (stop) if its 0
-    }, 1000);
-}
+  //start the interval
+  var counter = setInterval(function () {
+    document.getElementById("timer-container").innerHTML = "Timer: " + time; //write to div
+    time-- || stopTimer(time);
+  }, 1000);
 
+  function stopTimer(time) {
+    clearInterval(counter); //clear (stop) if its 0
+      alert("Out of time!");
+  }
+}
 //Questions
 const question1 = {
   question: "Question",
