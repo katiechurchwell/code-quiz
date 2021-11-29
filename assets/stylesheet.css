@@ -4,10 +4,6 @@
   color: white;
 }
 
-body {
-  text-align: center;
-}
-
 #start-button-container {
   display: flex;
   justify-content: center;
@@ -50,10 +46,14 @@ button:hover {
 }
 
 .megaContainer {
+    text-align: center;
     display: flex;
-    width: 100vw;
     font-size: large;
     align-items: center;
     flex-direction: column;
     gap: 10px;
+}
+
+.question {
+    color: orange;
 }

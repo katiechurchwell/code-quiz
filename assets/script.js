@@ -15,7 +15,7 @@ var countdown = function () {
   document.getElementById("timer-container").innerHTML = "Timer: " + counter;
   counter--;
   if (counter === -1) {
-    clearInterval(startCountdown);
+    clearInterval(startCountdown); //add function to alert, save highscore, and end round.
   }
 };
 
@@ -23,10 +23,8 @@ var startCountdown = setInterval(countdown, 1000); //milliseconds
 
 //Questions
 const question1 = {
-  q: "Question",
-  a: "Answer",
-  wrong1: "wrong #1",
-  wrong2: "wrong #2",
+  question: "Question",
+  options: ["no1", "no2", "no3", "Correct"]
 };
 
 // WHEN I answer a question
@@ -45,27 +43,25 @@ var presentQuestion = function () {
   var questionContainer = document.createElement("div");
   questionContainer.setAttribute("class", "question");
   megaContainer.appendChild(questionContainer);
+  questionContainer.innerHTML = question1.question;
 
-  questionContainer.innerHTML = question1.q;
+  //loop through options to create buttons
+  for (var i=0; i < question1.options.length; i++) {
+    var button = document.createElement("button");
+    megaContainer.appendChild(button);
+    button.setAttribute("id", question1.options.selectedIndex = [i]);
+    button.innerHTML = question1.options[i];
+    ;
+  }
 
-  //create buttons for multiple choice
-  var answerContainer = document.createElement("button");
-  answerContainer.setAttribute("class", "answer");
-  megaContainer.appendChild(answerContainer);
-  answerContainer.innerHTML = question1.a;
+ //determine selection 
+  var correct = document.querySelectorAll("button['question1.options[5]']")
+  console.log(correct);
+    // target.onclick = alert("you did it! yay~")
+  };
+
+ 
   
-  var answerContainer = document.createElement("button");
-  answerContainer.setAttribute("class", "answer");
-  megaContainer.appendChild(answerContainer);
-  answerContainer.innerHTML = question1.wrong1;
-
-  var answerContainer = document.createElement("button");
-  answerContainer.setAttribute("class", "answer");
-  megaContainer.appendChild(answerContainer);
-  answerContainer.innerHTML = question1.wrong2;
-  
-  //if else code for correct button
-};
 
 // THEN I am presented with another question
 
