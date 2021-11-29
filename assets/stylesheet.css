@@ -1,3 +1,6 @@
+* {
+    font-family: Roboto, serif;
+}
 .start-button-container {
 display: flex;
 justify-content: center;

@@ -2,27 +2,32 @@
 var startBtn = document.getElementById("startBtn");
 
 var StartQuiz = function () {
-    console.log("hey");
+  console.log("hey");
 };
 
-startBtn.addEventListener("click", StartQuiz)
-
+startBtn.addEventListener("click", StartQuiz);
 
 // THEN a timer starts and I am presented with a question
-var counter = 10
+var counter = 60;
 
-var countdown = function(){
-console.log(counter);
-counter--;
-  if (counter === 0){
-   console.log("blastoff");
-   clearInterval(startCountdown); //stops when 0
-   };
+var countdown = function () {
+  document.getElementById("timer-container").innerHTML = counter;
+  counter--;
+  if (counter === 0) {
+    console.log("blastoff");
+    clearInterval(startCountdown); //stops when 0
+  }
 };
 
 var startCountdown = setInterval(countdown, 1000); //milliseconds
 
 // WHEN I answer a question
+var presentQuestion = function () {
+  //create div
+  //add text content from array?
+  //create buttons for multiple choice
+  //if else code for correct button
+};
 
 // THEN I am presented with another question
 
