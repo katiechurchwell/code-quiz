@@ -1,7 +1,15 @@
 * {
   font-family: Roboto, serif;
-  background-color: rgb(68, 68, 73);
-  color: white;
+  background-color: #2b343b;
+  color: #fffbff;
+}
+
+.highscore-container {
+  color: orange;
+}
+
+#timer-container {
+  color: orange;
 }
 
 #start-button-container {
@@ -9,15 +17,20 @@
   justify-content: center;
   align-items: center;
   height: 60vh;
+  flex-direction: column;
+}
+
+#start-button-container h1 {
+  margin: 0;
 }
 
 #startBtn {
   width: 200px;
-  height: 50px;
+  height: auto;
   font-size: x-large;
   border-radius: 12px;
   border: none;
-  background-color: lightslategrey;
+  background-color: #808A9F;
 }
 
 #startBtn:hover {
@@ -46,14 +59,14 @@ button:hover {
 }
 
 .megaContainer {
-    text-align: center;
-    display: flex;
-    font-size: large;
-    align-items: center;
-    flex-direction: column;
-    gap: 10px;
+  text-align: center;
+  display: flex;
+  font-size: large;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .question {
-    color: orange;
+  color: orange;
 }

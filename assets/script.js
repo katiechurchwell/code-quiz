@@ -14,7 +14,7 @@ var counter = 10;
 var countdown = function () {
   document.getElementById("timer-container").innerHTML = "Timer: " + counter;
   counter--;
-  if (counter === -1) {
+  if (counter === 0) {
     clearInterval(startCountdown); //add function to alert, save highscore, and end round.
   }
 };
@@ -53,14 +53,15 @@ var presentQuestion = function () {
     button.innerHTML = question1.options[i];
   }
 
-//determine selection
-var test = function () {
+  //determine selection
+  var test = function () {
     console.log("Correct!");
-}
+  };
 
-var correct = document.getElementById("3");
-correct.addEventListener("click", test);
+  var correct = document.getElementById("3");
+  correct.addEventListener("click", test);
 
+  //add localStorage persistence
 };
 
 // THEN I am presented with another question
