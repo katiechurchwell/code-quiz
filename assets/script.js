@@ -3,23 +3,21 @@ var startBtn = document.getElementById("startBtn");
 
 var StartQuiz = function () {
   presentQuestion();
-  countdown();
+  setTimer(10);
 };
 
 startBtn.addEventListener("click", StartQuiz);
 
 // THEN a timer starts and I am presented with a question
-var counter = 10;
+// need to save highscore, and end round.
 
-var countdown = function () {
-  document.getElementById("timer-container").innerHTML = "Timer: " + counter;
-  counter--;
-  if (counter === 0) {
-    clearInterval(startCountdown); //add function to alert, save highscore, and end round.
-  }
-};
-
-var startCountdown = setInterval(countdown, 1000); //milliseconds
+function setTimer(time) {
+    //start the interval
+    var counter = setInterval(function () {
+        document.getElementById('timer-container').innerHTML = "Timer: " + time; //write to div
+        time-- || clearInterval(counter); //clear (stop) if its 0
+    }, 1000);
+}
 
 //Questions
 const question1 = {
@@ -27,7 +25,7 @@ const question1 = {
   options: ["no1", "no2", "no3", "Correct"],
 };
 
-// WHEN I answer a question
+// WHEN I answer a question (currently just question1, how to scale up?)
 var presentQuestion = function () {
   //remove start button
   var startBtnContainer = document.getElementById("start-button-container");
@@ -53,15 +51,15 @@ var presentQuestion = function () {
     button.innerHTML = question1.options[i];
   }
 
-  //determine selection
+  //determine selection, add to localStorage
   var test = function () {
-    console.log("Correct!");
+    alert("Correct!");
+    localStorage.setItem("Correct", +1); //will this update value?
+    megaContainer.remove();
   };
 
   var correct = document.getElementById("3");
   correct.addEventListener("click", test);
-
-  //add localStorage persistence
 };
 
 // THEN I am presented with another question
