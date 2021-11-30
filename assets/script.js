@@ -78,15 +78,16 @@ function presentQuestion() {
 // loop > if the value of questions.options[i] == questions.correct then conventi
 //determine selection, add to localStorage
 function correctAnswer() {
-  questions[questionCount].options.forEach(function () {
+  var correctBtn = document.querySelectorAll(button[answer])
+  console.log(correctBtn);
+  // if === questions[questionCount].answer;
     alert("Correct!");
     localStorage.setItem("Correct", +1); //will this update value?
     //clear contents
     document.getElementById("question").innerHTML = "";
     document.getElementsByClassName("answers").innerHTML = ""; //not working
     presentQuestion();
-  });
-}
+  };
 
 // THEN I am presented with another question
 
