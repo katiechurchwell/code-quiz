@@ -2,15 +2,14 @@
 var startBtn = document.getElementById("startBtn");
 
 var StartQuiz = function () {
+  removeStart();
   presentQuestion();
-  setTimer(10);
+  setTimer(60);
 };
 
 startBtn.addEventListener("click", StartQuiz);
 
 // THEN a timer starts and I am presented with a question
-// need to save highscore, and end round.
-
 function setTimer(time) {
   //start the interval
   var counter = setInterval(function () {
@@ -20,52 +19,76 @@ function setTimer(time) {
 
   function stopTimer(time) {
     clearInterval(counter); //clear (stop) if its 0
-      alert("Out of time!");
+    alert("Out of time!"); //save highscore, end round needed
   }
 }
-//Questions
-const question1 = {
-  question: "Question",
-  options: ["no1", "no2", "no3", "Correct"],
-};
 
-// WHEN I answer a question (currently just question1, how to scale up?)
-var presentQuestion = function () {
-  //remove start button
-  var startBtnContainer = document.getElementById("start-button-container");
-  startBtnContainer.remove();
+//remove start button
+function removeStart() {
+  document.getElementById("start-button-container").remove();
   startBtn.remove();
+}
 
+//Questions
+var questions = [
+  {
+    question: "Q1",
+    answer: "Correct1",
+    options: ["1", "2", "3"],
+  },
+  {
+    question: "Q2",
+    answer: "Correct2",
+    options: ["5", "6", "7"],
+  }
+];
+
+var questionCount = 0;
+
+// //correct answers
+//   var correct = document.getElementById("3");
+//   correct.addEventListener("click", correctAnswer);
+
+//Object.keys(questions).length; // perfect for number of QUESTIONS
+
+function presentQuestion() {
   //create div
   var megaContainer = document.createElement("div");
   megaContainer.setAttribute("class", "megaContainer");
   document.body.appendChild(megaContainer);
 
-  //display question
+  //DISPLAYING QUESTIONS
+  //create container
   var questionContainer = document.createElement("div");
-  questionContainer.setAttribute("class", "question");
+  questionContainer.setAttribute("id", "question");
   megaContainer.appendChild(questionContainer);
-  questionContainer.innerHTML = question1.question;
+  questionContainer.textContent = questions[questionCount].question;
 
-  //loop through options to create buttons
-  for (var i = 0; i < question1.options.length; i++) {
+  //create answer buttons
+  questions[questionCount].options.forEach(function (answers) {
     var button = document.createElement("button");
     megaContainer.appendChild(button);
-    button.setAttribute("id", (question1.options.selectedIndex = [i]));
-    button.innerHTML = question1.options[i];
-  }
+    button.setAttribute("class", "answers");
+    button.textContent = answers;
+  });
 
-  //determine selection, add to localStorage
-  var test = function () {
-    alert("Correct!");
-    localStorage.setItem("Correct", +1); //will this update value?
-    megaContainer.remove();
-  };
-
-  var correct = document.getElementById("3");
-  correct.addEventListener("click", test);
+   //include correct answer
+   var correctButton = document.createElement("button");
+   megaContainer.appendChild(correctButton);
+   correctButton.setAttribute("class", "answers");
+   correctButton.setAttribute("id", (questions[questionCount].answer.selectedIndex));
+   button.textContent = questions[questionCount].answer
 };
 
+//determine selection, add to localStorage
+var correctAnswer = function () {
+  alert("Correct!");
+  localStorage.setItem("Correct", +1); //will this update value?
+
+  //clear contents
+  document.getElementById("question").innerHTML = "";
+  document.getElementsByClassName("answers").innerHTML = ""; //not working
+};
 // THEN I am presented with another question
 
 // WHEN I answer a question incorrectly
