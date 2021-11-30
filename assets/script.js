@@ -32,15 +32,15 @@ function removeStart() {
 //Questions
 var questions = [
   {
-    question: "Q1",
-    answer: "Correct1",
-    options: ["1", "2", "3"],
+    question: "What does CSS stand for?",
+    correct: 3,
+    options: [1, 2, 3, 4],
   },
   {
     question: "Q2",
-    answer: "Correct2",
-    options: ["5", "6", "7"],
-  }
+    correct: 4,
+    options: [4, 5, 6, 7],
+  },
 ];
 
 var questionCount = 0;
@@ -70,25 +70,24 @@ function presentQuestion() {
     megaContainer.appendChild(button);
     button.setAttribute("class", "answers");
     button.textContent = answers;
+    button.addEventListener("click", correctAnswer);
   });
+}
 
-   //include correct answer
-   var correctButton = document.createElement("button");
-   megaContainer.appendChild(correctButton);
-   correctButton.setAttribute("class", "answers");
-   correctButton.setAttribute("id", (questions[questionCount].answer.selectedIndex));
-   button.textContent = questions[questionCount].answer
-};
-
+// define the function correct answer check
+// loop > if the value of questions.options[i] == questions.correct then conventi
 //determine selection, add to localStorage
-var correctAnswer = function () {
-  alert("Correct!");
-  localStorage.setItem("Correct", +1); //will this update value?
+function correctAnswer() {
+  questions[questionCount].options.forEach(function () {
+    alert("Correct!");
+    localStorage.setItem("Correct", +1); //will this update value?
+    //clear contents
+    document.getElementById("question").innerHTML = "";
+    document.getElementsByClassName("answers").innerHTML = ""; //not working
+    presentQuestion();
+  });
+}
 
-  //clear contents
-  document.getElementById("question").innerHTML = "";
-  document.getElementsByClassName("answers").innerHTML = ""; //not working
-};
 // THEN I am presented with another question
 
 // WHEN I answer a question incorrectly
