@@ -1,25 +1,26 @@
-// WHEN I click the start button
 var startBtn = document.getElementById("startBtn");
+var time = 60;
 
+//Start Quiz
 var StartQuiz = function () {
   removeStart();
   presentQuestion();
-  setTimer(60);
+  setTimer(time);
 };
 
 startBtn.addEventListener("click", StartQuiz);
 
-// THEN a timer starts and I am presented with a question
+//Timer
 function setTimer(time) {
-  //start the interval
   var counter = setInterval(function () {
-    document.getElementById("timer-container").innerHTML = "Timer: " + time; //write to div
+    document.getElementById("timer-container").innerHTML = "Timer: " + time;
     time-- || stopTimer(time);
   }, 1000);
 
   function stopTimer(time) {
-    clearInterval(counter); //clear (stop) if its 0
+    clearInterval(counter);
     alert("Out of time!"); //save highscore, end round needed
+    window.location.replace("highscores.html"); //or endGame function?
   }
 }
 
@@ -32,39 +33,37 @@ function removeStart() {
 //Questions
 var questions = [
   {
-    question: "What does CSS stand for?",
-    correct: "3",
-    options: [1, 2, 3, 4],
+    question: "What is NaN property in JavaScript?",
+    correct: "Not-a-Number value",
+    options: ["Nearly-a-Number value", "Not-a-Neutral value", "Not-a-Number value", "Delicious piece of bread value"],
   },
   {
-    question: "Q2",
-    correct: "4",
-    options: [4, 5, 6, 7],
+    question: "What does DOM stand for?",
+    correct: "Document Object Model",
+    options: ["Document Object Model", "Discourse Over Mapping", "Dynamic Oriented Modeling", "Dominatrix"],
+  },
+  {
+    question: "What are the three types of scope in JS?",
+    correct: "Global, Local and Block",
+    options: ["Galactic, Local and Blockchain", "Gigantic, Little and Big", "Global, Local and Block", "Garbanzo, Lima and Baked Beans"],
   },
 ];
 
 var questionCount = 0;
-
-// //correct answers
-//   var correct = document.getElementById("3");
-//   correct.addEventListener("click", correctAnswer);
-
-//Object.keys(questions).length; // perfect for number of QUESTIONS
+var totalPoints = 0;
 
 function presentQuestion() {
-  //create div
   var megaContainer = document.createElement("div");
   megaContainer.setAttribute("id", "megaContainer");
   document.body.appendChild(megaContainer);
 
-  //DISPLAYING QUESTIONS
-  //create container
+  //displaying questions
   var questionContainer = document.createElement("div");
   questionContainer.setAttribute("id", "question");
   megaContainer.appendChild(questionContainer);
   questionContainer.textContent = questions[questionCount].question;
 
-  //create answer buttons
+  //displaying answers
   questions[questionCount].options.forEach(function (answers) {
     var button = document.createElement("button");
     megaContainer.appendChild(button);
@@ -74,26 +73,29 @@ function presentQuestion() {
   });
 }
 
-// define the function correct answer check
+//checking if correct answer was selected
 function correctAnswer(event) {
   if (event.target.textContent === questions[questionCount].correct) {
     alert("Correct!");
-    localStorage.setItem("Correct", +1); //will this update value?
-  } else {
+    totalPoints++;
+  }
+  else {
     alert("Incorrect!");
-    // Need to do: WHEN I answer a question incorrectly THEN time is subtracted from the clock
+    time -= 5;
   }
   questionCount++;
   nextQuestion();
   };
 
-
-// THEN I am presented with another question
+// Next Question
   function nextQuestion () {
-    //clear contents
+    if (questionCount < questions.length) {
     document.getElementById("megaContainer").remove();
     presentQuestion();
-    console.log(questionCount);
+    }
+    else {
+      window.location.replace("highscores.html");
+    }
   };
 
 
