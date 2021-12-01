@@ -1,23 +1,15 @@
 var startBtn = document.getElementById("startBtn");
 var time = 60;
-
-//Start Quiz
-var StartQuiz = function () {
-  removeStart();
-  presentQuestion();
-  setTimer(time);
-};
-
-startBtn.addEventListener("click", StartQuiz);
+var counter;
 
 //Timer
-function setTimer(time) {
-  var counter = setInterval(function () {
+function setTimer() {
+  counter = setInterval(function () {
     document.getElementById("timer-container").innerHTML = "Timer: " + time;
-    time-- || stopTimer(time);
+    time-- || stopTimer();
   }, 1000);
 
-  function stopTimer(time) {
+  function stopTimer() {
     clearInterval(counter);
     alert("Out of time!"); //save highscore, end round needed
     window.location.replace("highscores.html"); //or endGame function?
@@ -35,17 +27,32 @@ var questions = [
   {
     question: "What is NaN property in JavaScript?",
     correct: "Not-a-Number value",
-    options: ["Nearly-a-Number value", "Not-a-Neutral value", "Not-a-Number value", "Delicious piece of bread value"],
+    options: [
+      "Nearly-a-Number value",
+      "Not-a-Neutral value",
+      "Not-a-Number value",
+      "Delicious piece of bread value",
+    ],
   },
   {
     question: "What does DOM stand for?",
     correct: "Document Object Model",
-    options: ["Document Object Model", "Discourse Over Mapping", "Dynamic Oriented Modeling", "Dominatrix"],
+    options: [
+      "Document Object Model",
+      "Discourse Over Mapping",
+      "Dynamic Oriented Modeling",
+      "Dominos Oreos Macarons",
+    ],
   },
   {
     question: "What are the three types of scope in JS?",
     correct: "Global, Local and Block",
-    options: ["Galactic, Local and Blockchain", "Gigantic, Little and Big", "Global, Local and Block", "Garbanzo, Lima and Baked Beans"],
+    options: [
+      "Galactic, Local and Blockchain",
+      "Gigantic, Little and Big",
+      "Global, Local and Block",
+      "Garbanzo, Lima and Baked Beans",
+    ],
   },
 ];
 
@@ -78,26 +85,32 @@ function correctAnswer(event) {
   if (event.target.textContent === questions[questionCount].correct) {
     alert("Correct!");
     totalPoints++;
-  }
-  else {
+  } else {
     alert("Incorrect!");
-    time -= 5;
+    time -= 20;
   }
   questionCount++;
   nextQuestion();
-  };
+}
 
 // Next Question
-  function nextQuestion () {
-    if (questionCount < questions.length) {
+function nextQuestion() {
+  if (questionCount < questions.length) {
     document.getElementById("megaContainer").remove();
     presentQuestion();
-    }
-    else {
-      window.location.replace("highscores.html");
-    }
-  };
+  } else {
+    window.location.replace("highscores.html");
+  }
+}
 
+//Start Quiz
+var StartQuiz = function () {
+  removeStart();
+  presentQuestion();
+  setTimer();
+};
+
+startBtn.addEventListener("click", StartQuiz);
 
 // WHEN all questions are answered or the timer reaches 0 THEN the game is over
 // WHEN the game is over THEN I can save my initials and score
