@@ -54,7 +54,7 @@ var questionCount = 0;
 function presentQuestion() {
   //create div
   var megaContainer = document.createElement("div");
-  megaContainer.setAttribute("class", "megaContainer");
+  megaContainer.setAttribute("id", "megaContainer");
   document.body.appendChild(megaContainer);
 
   //DISPLAYING QUESTIONS
@@ -81,26 +81,21 @@ function correctAnswer(event) {
     localStorage.setItem("Correct", +1); //will this update value?
   } else {
     alert("Incorrect!");
+    // Need to do: WHEN I answer a question incorrectly THEN time is subtracted from the clock
   }
+  questionCount++;
+  nextQuestion();
   };
 
-  function nextQuestion () {
-    //clear contents
-    document.getElementById("question").innerHTML = "";
-    document.getElementsByClassName("answers").innerHTML = ""; //not working
-    presentQuestion();
-  };
 
 // THEN I am presented with another question
+  function nextQuestion () {
+    //clear contents
+    document.getElementById("megaContainer").remove();
+    presentQuestion();
+    console.log(questionCount);
+  };
 
-// WHEN I answer a question incorrectly
 
-// THEN time is subtracted from the clock
-
-// WHEN all questions are answered or the timer reaches 0
-
-// THEN the game is over
-
-// WHEN the game is over
-
-// THEN I can save my initials and score
+// WHEN all questions are answered or the timer reaches 0 THEN the game is over
+// WHEN the game is over THEN I can save my initials and score
