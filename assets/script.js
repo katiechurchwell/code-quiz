@@ -33,12 +33,12 @@ function removeStart() {
 var questions = [
   {
     question: "What does CSS stand for?",
-    correct: 3,
+    correct: "3",
     options: [1, 2, 3, 4],
   },
   {
     question: "Q2",
-    correct: 4,
+    correct: "4",
     options: [4, 5, 6, 7],
   },
 ];
@@ -75,10 +75,14 @@ function presentQuestion() {
 }
 
 // define the function correct answer check
-// loop > if the value of questions.options[i] == questions.correct then conventi
+// loop > if the value of questions.options[i] == questions.correct
 //determine selection, add to localStorage
-function correctAnswer() {
-  var correctBtn = document.querySelectorAll(button[answer])
+function correctAnswer(event) {
+  console.log(event.target.textContent);
+  console.log(questions[questionCount].correct)
+
+  
+  var correctBtn = document.getElementsByClassName("answers")
   console.log(correctBtn);
   // if === questions[questionCount].answer;
     alert("Correct!");
