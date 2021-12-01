@@ -75,18 +75,16 @@ function presentQuestion() {
 }
 
 // define the function correct answer check
-// loop > if the value of questions.options[i] == questions.correct
-//determine selection, add to localStorage
 function correctAnswer(event) {
-  console.log(event.target.textContent);
-  console.log(questions[questionCount].correct)
-
-  
-  var correctBtn = document.getElementsByClassName("answers")
-  console.log(correctBtn);
-  // if === questions[questionCount].answer;
+  if (event.target.textContent === questions[questionCount].correct) {
     alert("Correct!");
     localStorage.setItem("Correct", +1); //will this update value?
+  } else {
+    alert("Incorrect!");
+  }
+  };
+
+  function nextQuestion () {
     //clear contents
     document.getElementById("question").innerHTML = "";
     document.getElementsByClassName("answers").innerHTML = ""; //not working
