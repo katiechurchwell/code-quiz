@@ -1,19 +1,21 @@
+//Global Variables
 var startBtn = document.getElementById("startBtn");
 var time = 60;
 var counter;
+var questionCount = 0;
+var totalPoints = 0;
 
 //Timer
 function setTimer() {
   counter = setInterval(function () {
     document.getElementById("timer-container").innerHTML = "Timer: " + time;
-    time-- || stopTimer();
-  }, 1000);
+    time--;
 
-  function stopTimer() {
-    clearInterval(counter);
-    alert("Out of time!"); //save highscore, end round needed
-    window.location.replace("highscores.html"); //or endGame function?
-  }
+    if (time <= 0) {
+      alert("Out of time!");
+      endQuiz();
+    }
+  }, 1000);
 }
 
 //remove start button
@@ -56,9 +58,6 @@ var questions = [
   },
 ];
 
-var questionCount = 0;
-var totalPoints = 0;
-
 function presentQuestion() {
   var megaContainer = document.createElement("div");
   megaContainer.setAttribute("id", "megaContainer");
@@ -99,18 +98,22 @@ function nextQuestion() {
     document.getElementById("megaContainer").remove();
     presentQuestion();
   } else {
-    window.location.replace("highscores.html");
+    endQuiz();
   }
 }
 
 //Start Quiz
-var StartQuiz = function () {
+function StartQuiz() {
   removeStart();
   presentQuestion();
   setTimer();
-};
+}
 
 startBtn.addEventListener("click", StartQuiz);
 
-// WHEN all questions are answered or the timer reaches 0 THEN the game is over
-// WHEN the game is over THEN I can save my initials and score
+//End Quiz
+function endQuiz() {
+  clearInterval(counter);
+  localStorage.setItem("Score", totalPoints);
+  window.location.replace("highscores.html");
+}
