@@ -111,8 +111,20 @@ function StartQuiz() {
 
 startBtn.addEventListener("click", StartQuiz);
 
+function initials() {
+var userInput = prompt("Enter your intials (3 character max)");
+    
+    if (userInput.length === 3) {
+    var userInitials = userInput.toUpperCase();
+    localStorage.setItem("Name", userInitials);
+    } else {
+        alert("Invalid Input");
+    }
+}
+
 //End Quiz
 function endQuiz() {
+  initials();
   clearInterval(counter);
   localStorage.setItem("Score", totalPoints);
   window.location.replace("highscores.html");

@@ -1,6 +1,7 @@
 //Global Variables
 var userScore = localStorage.getItem("Score");
 var scoreOrderedList = document.getElementById("scores");
+var userInitials = localStorage.getItem("Name");
 
 //Score Array
 var scores = [
@@ -15,7 +16,7 @@ var scores = [
 ];
 
 //make object with userInitials as name and userScore as score
-function recordScore(userInitials) {
+window.onload = function recordScore() {
 let user = { name: userInitials, score: userScore };
 scores.push(user);
 
@@ -31,15 +32,3 @@ scores.forEach(function (scores) {
   li.textContent = scores.name + " with a score of " + scores.score;
 });
 };
-
-//Ask for initials
-window.onload = function initials() {
-    var userInput = prompt("Enter your intials (3 character max)");
-    
-    if (userInput.length === 3) {
-    var userInitials = userInput.toUpperCase();
-    recordScore(userInitials);
-    } else {
-        alert("Invalid Input");
-    }
-}
