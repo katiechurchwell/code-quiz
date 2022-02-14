@@ -13,7 +13,7 @@ A (brief) timed coding quiz with multiple choices that runs in the browser. Feat
 ## Deployment
 https://katiechurchwell.github.io/code-quiz/
 
-## Demo/Screenshot
+## Screenshot
 ![A screenshot of the code quiz.](assets/images/screenshot.png)
 
 ## Questions
